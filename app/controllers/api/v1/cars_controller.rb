@@ -1,4 +1,5 @@
 class Api::V1::CarsController < ApplicationController
+    # Never use NEW or EDIT
 
     def index
         @cars = Car.all
@@ -10,5 +11,4 @@ class Api::V1::CarsController < ApplicationController
         render json: @car.to_json(include: :sellers)
     end
 
-    # Never use NEW or EDIT
 end
