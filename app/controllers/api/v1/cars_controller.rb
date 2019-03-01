@@ -1,15 +1,14 @@
 class Api::V1::CarsController < ApplicationController
 
     def index
-        # @cars = Cars.all
-        # render json: cars
-        render json: Car.all
+        @cars = Car.all
+        render json: @cars.to_json(include: :sellers)
     end
 
     def show
-        # @car = Car.find(params[:id])
-        # render json: car.to_json(include: [:sellers])
-        car = Car.find(params[:id])
-        render json: car
+        @car = Car.find(params[:id])
+        render json: @car.to_json(include: :sellers)
     end
+
+    # Never use NEW or EDIT
 end
