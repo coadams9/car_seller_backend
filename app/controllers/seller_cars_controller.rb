@@ -1,2 +1,0 @@
-class SellerCarsController < ApplicationController
-end
