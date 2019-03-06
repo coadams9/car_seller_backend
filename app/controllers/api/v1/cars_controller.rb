@@ -15,7 +15,7 @@ class Api::V1::CarsController < ApplicationController
     @car = Car.new(car_params)
     @seller = @car.sellers.build(seller_params['sellers'][0])
     if @car.save
-      render json: { car: @car, seller: @seller }
+      render json: @car.to_json(include: :sellers)
     else
       render json: {
         car_errors: @car.errors.full_messages,
