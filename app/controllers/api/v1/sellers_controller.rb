@@ -1,5 +1,6 @@
 class Api::V1::SellersController < ApplicationController
     # Never use NEW or EDIT
+    # USE CREATE & UPDATE
 
     def index
         @sellers = Seller.all

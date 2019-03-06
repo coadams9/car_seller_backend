@@ -11,4 +11,16 @@ class Api::V1::CarsController < ApplicationController
         render json: @car.to_json(include: :sellers)
     end
 
+    def update
+        @car = Car.find(params[:id])
+        @car.update(car_params)
+        render json: @car.to_json(include: :sellers)
+    end
+
+
+    private
+    def car_params
+        params.require(:car).permit(:favorite)
+    end
+
 end
