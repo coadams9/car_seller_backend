@@ -24,6 +24,17 @@ class Api::V1::CarsController < ApplicationController
     end
   end
 
+
+  def update
+    @car = Car.find(params[:id])
+    @car.update(car_params)
+    if @car.save
+      render json: @car.to_json(include: :sellers)
+    else
+      render json: @car.errors.full_messages
+    end
+  end
+
   private
 
   def seller_params
