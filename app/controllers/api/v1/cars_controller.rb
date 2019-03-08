@@ -45,18 +45,4 @@ class Api::V1::CarsController < ApplicationController
     params.permit(:make, :modelMake, :year, :color, :image, :description, :price, :favorite)
   end
 
-
-
-    def update
-        @car = Car.find(params[:id])
-        @car.update(car_params)
-        render json: @car.to_json(include: :sellers)
-    end
-
-
-    private
-    def car_params
-        params.require(:car).permit(:favorite)
-    end
-
 end
