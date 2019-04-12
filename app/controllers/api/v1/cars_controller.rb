@@ -3,23 +3,23 @@ class Api::V1::CarsController < ApplicationController
 
   def index
     @cars = Car.all
-    render json: @cars.to_json(include: :sellers)
+    render json: @cars.to_json(include: :users)
   end
 
   def show
     @car = Car.find(params[:id])
-    render json: @car.to_json(include: :sellers)
+    render json: @car.to_json(include: :users)
   end
 
   def create
     @car = Car.new(car_params)
-    @seller = @car.sellers.build(seller_params['sellers'][0])
+    @user = @car.users.build(user_params['users'][0])
     if @car.save
-      render json: @car.to_json(include: :sellers)
+      render json: @car.to_json(include: :users)
     else
       render json: {
         car_errors: @car.errors.full_messages,
-        seller_errors: @seller.errors.full_messages
+        seller_errors: @user.errors.full_messages
       }
     end
   end
@@ -29,7 +29,7 @@ class Api::V1::CarsController < ApplicationController
     @car = Car.find(params[:id])
     @car.update(car_params)
     if @car.save
-      render json: @car.to_json(include: :sellers)
+      render json: @car.to_json(include: :users)
     else
       render json: @car.errors.full_messages
     end
@@ -37,8 +37,8 @@ class Api::V1::CarsController < ApplicationController
 
   private
 
-  def seller_params
-    params.permit(sellers: [:name, :email, :phoneNum])
+  def user_params
+    params.permit(users: [:name, :password, :phoneNum])
   end
 
   def car_params
