@@ -28,23 +28,23 @@ ActiveRecord::Schema.define(version: 2019_03_01_124416) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "seller_cars", force: :cascade do |t|
+  create_table "user_cars", force: :cascade do |t|
     t.bigint "car_id"
-    t.bigint "seller_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_id"], name: "index_seller_cars_on_car_id"
-    t.index ["seller_id"], name: "index_seller_cars_on_seller_id"
+    t.index ["car_id"], name: "index_user_cars_on_car_id"
+    t.index ["user_id"], name: "index_user_cars_on_user_id"
   end
 
-  create_table "sellers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "password_digest"
     t.string "phoneNum"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "seller_cars", "cars"
-  add_foreign_key "seller_cars", "sellers"
+  add_foreign_key "user_cars", "cars"
+  add_foreign_key "user_cars", "users"
 end
