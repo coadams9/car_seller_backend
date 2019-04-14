@@ -36,8 +36,8 @@ car24 = Car.create(make: "Volkswagen", modelMake: "Split Window Double Door Pane
 car25 = Car.create(make: "Volkswagen", modelMake: "Bay Window Devon Camper", year: "1972", color: "Flowers", image: "https://i.imgur.com/ppN6J5Tm.jpg", description: lorem, price: "$15,000", favorite: false)
 
 
-User1 = User.create(name: "Ryan Riesenberger", password: "ryan", phoneNum: "6195080510")
-User2= User.create(name: "Cory Adams", password: "cory", phoneNum: "4049920028")
+User1 = User.create(username: "Ryan Riesenberger", password: "ryan", phoneNum: "6195080510")
+User2= User.create(username: "Cory Adams", password: "cory", phoneNum: "4049920028")
 # seller3= Seller.create(name: "", email: "", phoneNum: "")
 
 
