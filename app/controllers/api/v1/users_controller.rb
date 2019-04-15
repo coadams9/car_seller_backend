@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  # Never use NEW or EDIT
 
   def index
     @users = User.all
@@ -12,14 +11,20 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    if @user.save
+      token = JWT.encode(userId: @user.id)
+      render json: { username: @user.username, token: token }, status: :created
+    else
+      render json: @user.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
 
   private
 
   def user_params
-    params.permit(:name, :password, :phoneNum)
+    params.permit(:username, :password, :phoneNum)
   end
 
 

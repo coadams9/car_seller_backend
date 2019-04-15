@@ -5,12 +5,12 @@ class ApplicationController < ActionController::API
       return nil unless encoded_token.present?
       decoded_token = JWT.decode(encoded_token, ENV['SECRET']).first
       User.find(decoded_token['userId'])
-    end
+   end
   
-    def authorize!
+   def authorize!
       unless current_user
-        render json: { error: 'You must be logged in to do that. Please login and try again!' }, status: :unauthorized
+         render json: { error: 'You must be logged in to do that. Please login and try again!' }, status: :unauthorized
       end
-    end
-    
+   end
+
 end
