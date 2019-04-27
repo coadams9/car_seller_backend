@@ -2,7 +2,6 @@ class Api::V1::AuthController < ApplicationController
 
    def create
       @user = User.find_by(username: login_params[:username])
-      byebug
       if @user && @user.authenticate(login_params[:password])
          token = JWT.encode({ userId: @user.id }, ENV['SECRET'])
          render json: { username: @user.username, token: token }, status: :accepted
