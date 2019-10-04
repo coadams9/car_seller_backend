@@ -38,7 +38,7 @@ car25 = Car.create(make: "Volkswagen", modelMake: "Bay Window Devon Camper", yea
 
 User1 = User.create(username: "Ryan Riesenberger", password: "ryan", phoneNum: "6195080510")
 User2= User.create(username: "Cory Adams", password: "cory", phoneNum: "4049920028")
-# seller3= Seller.create(name: "", email: "", phoneNum: "")
+User3= User.create(username: 'Test', password: '1234', phoneNum: '1231231234')
 
 
 userCar1 = UserCar.create(car_id: 1, user_id: 1)

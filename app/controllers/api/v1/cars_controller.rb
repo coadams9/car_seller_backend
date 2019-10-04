@@ -12,15 +12,13 @@ class Api::V1::CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(car_params)
-    @user = @car.users.build(user_params['users'][0])
-    if @car.save
-      render json: @car.to_json(include: :users)
+    @user = current_user
+    @new_car = Car.new(car_params)
+    @new_car.users << @user
+    if @new_car.save
+      render json: @new_car
     else
-      render json: {
-        car_errors: @car.errors.full_messages,
-        seller_errors: @user.errors.full_messages
-      }
+      render json: { new_car_errors: @new_car.errors.full_messages }
     end
   end
 
